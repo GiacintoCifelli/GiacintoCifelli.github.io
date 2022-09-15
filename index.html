@@ -1,0 +1,64 @@
+<html>
+<head>
+	<title>my nice github page</title>
+</head>
+<body onload="afterPageLoad()">
+<div style="width: auto; height: 100%;">
+	<style>
+	@font-face {
+		font-family: "greatvibes";
+		src:url("GreatVibes-Regular.ttf")  format("truetype");
+	}
+	.mmtext {
+		font-family: "greatvibes";
+		font-size: large;
+		color: blue;
+	}
+	.ring {
+		filter:  drop-shadow(2px 2px 2px rgb(0 0 0 / 0.4));
+	}
+	</style>
+	<svg width="100%" height="100%" viewBox="-105 -105 220 220">
+		<circle r="80" cx="0" cy="0" fill="white" stroke="transparent" stroke-width="1" />
+		<circle href="#textcircle"class="ring" r="80" cx="0" cy="0" fill="transparent" stroke="black" stroke-width="3" />
+		<path id="mmpath" fill="none" stroke="none" stroke-width="0"
+			d="
+			M 0 0
+			m -100, 0
+			a 100,100 0 1,0 200,0
+			a 100,100 0 1,0 -200,0
+			M 0 0
+			m -100, 0
+			a 100,100 0 1,0 200,0
+			"
+		/>
+		<text id="anitext" dx="100" class="mmtext">
+			<textPath xlink:href="#mmpath">
+				Hello and welcome!
+			</textPath>
+		</text>
+	</svg>
+</div>
+	<script type="text/javascript">
+		const anitext = document.getElementById("anitext");
+
+		function sleep(ms) {
+			return new Promise( resolve => setTimeout(resolve, ms));
+		}
+		async function animate() {
+			const date = new Date();
+
+			dx = parseInt(anitext.getAttribute("dx"));
+			if(dx>720) dx=100;
+
+			anitext.setAttribute("dx", dx+5);
+
+			await sleep(30);
+			requestAnimationFrame(animate);
+		}
+
+		function afterPageLoad() {
+			requestAnimationFrame(animate);
+		}
+	</script>
+</body>
