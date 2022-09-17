@@ -1,8 +1,8 @@
 <html>
 <head>
-	<title>my nice github page</title>
+	<title>github welcome</title>
 </head>
-<body onload="afterPageLoad()">
+<body>
 <div style="width: auto; height: 100%;">
 	<style>
 	@font-face {
@@ -32,33 +32,12 @@
 			a 100,100 0 1,0 200,0
 			"
 		/>
-		<text id="anitext" dx="100" class="mmtext">
+		<text dx="0" class="mmtext">
 			<textPath xlink:href="#mmpath">
 				Hello and welcome!
 			</textPath>
+			<animate attributeName="dx" values="0;627" dur="4s" repeatCount="indefinite" />
 		</text>
 	</svg>
 </div>
-	<script type="text/javascript">
-		const anitext = document.getElementById("anitext");
-
-		function sleep(ms) {
-			return new Promise( resolve => setTimeout(resolve, ms));
-		}
-		async function animate() {
-			const date = new Date();
-
-			dx = parseInt(anitext.getAttribute("dx"));
-			if(dx>720) dx=100;
-
-			anitext.setAttribute("dx", dx+5);
-
-			await sleep(30);
-			requestAnimationFrame(animate);
-		}
-
-		function afterPageLoad() {
-			requestAnimationFrame(animate);
-		}
-	</script>
 </body>
